@@ -73,7 +73,7 @@ function TVShow({ match, location }) {
                   fontWeight: "bold",
                 }}
               >
-                {currentTVShow.title}
+                {currentTVShow.original_name}
               </h3>
               <button
                 type="button"
