@@ -95,7 +95,7 @@ export default function Login() {
               >
                 {t("logmein")}
               </button>
-              <button className="btn btn-primary btn-block">
+              <button className="btn btn-primary btn-block disabled">
                 {t("signup")}
               </button>
             </form>
