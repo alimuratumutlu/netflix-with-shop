@@ -43,14 +43,13 @@ function Movie({ match, location }) {
 
   const handleItemClick = (path) => {
     history.push(path);
-    setId(match.params.id);
   };
 
   useEffect(() => {
     getCurrentMovie(match.params.id);
     getCurrentGenres(match.params.id);
     getSimilarMovies(match.params.id);
-  }, [id]);
+  }, [match.params.id]);
 
   return (
     <DetailLayout>

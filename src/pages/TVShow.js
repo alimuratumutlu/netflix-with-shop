@@ -50,7 +50,7 @@ function TVShow({ match, location }) {
     getCurrentTVShow(match.params.id);
     getCurrentGenres(match.params.id);
     getSimilarTVShows(match.params.id);
-  }, [id]);
+  }, [match.params.id]);
 
   return (
     <DetailLayout>
