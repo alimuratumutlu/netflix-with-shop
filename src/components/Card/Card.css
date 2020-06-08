@@ -1,0 +1,22 @@
+.item-card {
+  min-height: 15vh;
+  margin: 10px;
+  max-width: 10vw;
+}
+
+.item-poster {
+  max-width: 10vw;
+  border-radius: 9px;
+}
+
+.item-price {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 4px;
+  background-color: #ff4b01;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 9px;
+  color: #fff;
+  font-size: 14px;
+}

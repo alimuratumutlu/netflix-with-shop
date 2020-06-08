@@ -1,0 +1,33 @@
+#jumbutron {
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    url("../../assets/images/jbg.jpg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  color: white;
+}
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "auth-left auth auth-right";
+}
+
+.auth {
+  grid-area: auth;
+}
+
+.auth-right {
+  grid-area: auth-right;
+}
+
+.auth-left {
+  grid-area: auth-left;
+}

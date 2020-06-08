@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, Suspense } from "react";
+
+// Component Import
+import Navbar from "./components/Navbar/Navbar";
+
+// NPM Packages
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+
+// Router Import
+import PageRouter from "./helpers/PageRouter";
+
+import { GlobalProvider } from "./context/GlobalState";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback="loading">
+      <GlobalProvider>
+        <Router>
+          <Switch>
+            <PageRouter />
+          </Switch>
+        </Router>
+      </GlobalProvider>
+    </Suspense>
   );
 }
 
