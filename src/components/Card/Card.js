@@ -2,11 +2,11 @@ import React from "react";
 
 import "./Card.css";
 
-export default function Card({ id, title, posterpath, handleItemClick }) {
+export default function Card({ id, title, type, posterpath, handleItemClick }) {
   return (
     <div
       role="button"
-      onClick={() => handleItemClick(`/detail/${id}`)}
+      onClick={() => handleItemClick(`/${type}/${id}`)}
       key={title}
       className="item-card text-dark"
     >

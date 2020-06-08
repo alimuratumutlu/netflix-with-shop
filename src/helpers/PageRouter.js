@@ -11,7 +11,8 @@ import Login from "../pages/Auth/Login";
 
 // Private Pages
 import Cart from "../pages/Cart";
-import Detail from "../pages/Detail";
+import Movie from "../pages/Movie";
+import TVShow from "../pages/TVShow";
 import Home from "../pages/Home";
 import Kids from "../pages/Kids";
 import MovieList from "../pages/MovieList";
@@ -27,7 +28,8 @@ const PagesRouter = () => {
       <PrivateRoute exact path="/home" component={Home} />
       <PrivateRoute exact path="/cart" component={Cart} />
       <PrivateRoute exact path="/kids" component={Kids} />
-      <PrivateRoute exact path="/detail/:id" component={Detail} />
+      <PrivateRoute exact path="/movie/:id" component={Movie} />
+      <PrivateRoute exact path="/tvshow/:id" component={TVShow} />
       <PrivateRoute exact path="/movies" component={MovieList} />
       <PrivateRoute exact path="/settings" component={Settings} />
       <PrivateRoute exact path="/my-profile" component={MyProfile} />

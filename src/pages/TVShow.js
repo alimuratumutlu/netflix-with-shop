@@ -23,7 +23,7 @@ import DetailLayout from "../layouts/DetailLayout";
 // Context
 import { GlobalContext } from "../context/GlobalState";
 
-function Detail({ match, location }) {
+function TVShow({ match, location }) {
   const [id, setId] = useState(match.params.id);
 
   let history = useHistory();
@@ -33,12 +33,12 @@ function Detail({ match, location }) {
 
   const {
     addToCart,
-    currentMovie,
+    currentTVShow,
     currentGenres,
     getCurrentGenres,
-    getCurrentMovie,
-    similarMovies,
-    getSimilarMovies,
+    getCurrentTVShow,
+    similarTVShows,
+    getSimilarTVShows,
   } = useContext(GlobalContext);
 
   const handleItemClick = (path) => {
@@ -47,16 +47,16 @@ function Detail({ match, location }) {
   };
 
   useEffect(() => {
-    getCurrentMovie(match.params.id);
+    getCurrentTVShow(match.params.id);
     getCurrentGenres(match.params.id);
-    getSimilarMovies(match.params.id);
+    getSimilarTVShows(match.params.id);
   }, [id]);
 
   return (
     <DetailLayout>
       <Jumbutron>
-        {currentMovie && (
-          <div key={currentMovie.id}>
+        {currentTVShow && (
+          <div key={currentTVShow.id}>
             <div className="text-white" style={{ width: "80vw" }}>
               <img
                 style={{
@@ -65,7 +65,7 @@ function Detail({ match, location }) {
                   marginRight: 40,
                   borderRadius: 15,
                 }}
-                src={`https://image.tmdb.org/t/p/original/${currentMovie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original/${currentTVShow.poster_path}`}
               />
               <h3
                 style={{
@@ -73,13 +73,13 @@ function Detail({ match, location }) {
                   fontWeight: "bold",
                 }}
               >
-                {currentMovie.title}
+                {currentTVShow.title}
               </h3>
               <button
                 type="button"
                 className="btn btn-outline-warning btn-lg my-3"
               >
-                <AiOutlineStar /> IMDB {currentMovie.vote_average}
+                <AiOutlineStar /> IMDB {currentTVShow.vote_average}
               </button>
               {currentGenres &&
                 currentGenres.map((genre) => (
@@ -91,28 +91,29 @@ function Detail({ match, location }) {
                     {genre.name}
                   </button>
                 ))}
-              <h3>{currentMovie.overview}</h3>
+              <h3>{currentTVShow.overview}</h3>
               <button
-                onClick={() => addToCart(currentMovie.id)}
+                onClick={() => addToCart(currentTVShow.id)}
                 type="button"
                 className="btn btn-success btn-lg mt-4"
               >
                 <RiShoppingCart2Line size={28} /> {t("addtocart")} (
-                {(currentMovie.popularity / 20).toFixed(2)} $)
+                {(currentTVShow.popularity / 20).toFixed(2)} $)
               </button>
             </div>
           </div>
         )}
       </Jumbutron>
       <h4 className="text-white pl-2 pt-4">
-        {t("similar")} {t("movies")}
+        {t("similar")} {t("tvshows")}
       </h4>
       <Carousel slidesPerPage={9} infinite keepDirectionWhenDragging>
-        {similarMovies &&
-          similarMovies.map((item) => (
+        {similarTVShows &&
+          similarTVShows.map((item) => (
             <Card
               id={item.id}
               title={item.title}
+              type="tvshow"
               posterpath={item.poster_path}
               popularity={item.popularity}
               handleItemClick={handleItemClick}
@@ -123,4 +124,4 @@ function Detail({ match, location }) {
   );
 }
 
-export default Detail;
+export default TVShow;

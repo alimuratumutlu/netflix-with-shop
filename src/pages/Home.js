@@ -109,6 +109,7 @@ function Home(props) {
           trendingMovies.map((item) => (
             <Card
               id={item.id}
+              type="movie"
               title={item.title}
               posterpath={item.poster_path}
               handleItemClick={handleItemClick}
@@ -124,6 +125,7 @@ function Home(props) {
           trendingTVShows.map((item) => (
             <Card
               id={item.id}
+              type="tvshow"
               title={item.title}
               posterpath={item.poster_path}
               handleItemClick={handleItemClick}

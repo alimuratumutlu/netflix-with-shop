@@ -11,8 +11,10 @@ const initialState = {
   trendingMovies: [{}],
   trendingTVShows: [{}],
   similarMovies: [{}],
+  similarTVShows: [{}],
   currentGenres: [{}],
   currentMovie: {},
+  currentTVShow: {},
   cart: [],
 };
 
@@ -73,12 +75,35 @@ export const GlobalProvider = ({ children }) => {
       });
   };
 
+  const getSimilarTVShows = async (id) => {
+    const res = await axios
+      .get(`${ApiUrl.BASE}/tv/${id}/similar?api_key=${Config.API_KEY}`)
+      .then((res) => {
+        console.log("dispatch", res.data.results);
+        dispatch({
+          type: "GET_SIMILAR_TVSHOWS",
+          payload: res.data.results,
+        });
+      });
+  };
+
   const getCurrentMovie = async (id) => {
     const res = await axios
       .get(`${ApiUrl.BASE}/movie/${id}?api_key=${Config.API_KEY}`)
       .then((res) => {
         dispatch({
           type: "GET_CURRENT_MOVIE",
+          payload: res.data,
+        });
+      });
+  };
+
+  const getCurrentTVShow = async (id) => {
+    const res = await axios
+      .get(`${ApiUrl.BASE}/tv/${id}?api_key=${Config.API_KEY}`)
+      .then((res) => {
+        dispatch({
+          type: "GET_CURRENT_TVSHOW",
           payload: res.data,
         });
       });
@@ -118,11 +143,15 @@ export const GlobalProvider = ({ children }) => {
         trendingTVShows: state.trendingTVShows,
         trendingPerson: state.trendingPerson,
         similarMovies: state.similarMovies,
+        similarTVShows: state.similarTVShows,
         currentMovie: state.currentMovie,
+        currentTVShow: state.currentTVShow,
         currentGenres: state.currentGenres,
         getCurrentMovie,
+        getCurrentTVShow,
         getCurrentGenres,
         getSimilarMovies,
+        getSimilarTVShows,
         fetchTrendingMovies,
         fetchTrendingTVShows,
         fetchTrendingPerson,

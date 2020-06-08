@@ -5,10 +5,20 @@ export default (state, action) => {
         ...state,
         currentGenres: action.payload,
       };
+    case "GET_CURRENT_TVSHOW":
+      return {
+        ...state,
+        currentTVShow: action.payload,
+      };
     case "GET_CURRENT_MOVIE":
       return {
         ...state,
         currentMovie: action.payload,
+      };
+    case "GET_SIMILAR_TVSHOWS":
+      return {
+        ...state,
+        similarTVShows: action.payload,
       };
     case "GET_SIMILAR_MOVIES":
       return {
