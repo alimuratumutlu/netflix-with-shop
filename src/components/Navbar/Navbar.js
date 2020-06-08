@@ -151,10 +151,16 @@ function Navbar(props) {
                 className="dropdown-menu dropdown-menu-right"
                 aria-labelledby="dropdownMenuButton"
               >
-                <a className="dropdown-item" href="/my-profile">
+                <a
+                  className="dropdown-item"
+                  onClick={() => handleItemClick("/my-profile")}
+                >
                   {t("myprofile")}
                 </a>
-                <a className="dropdown-item" href="/settings">
+                <a
+                  className="dropdown-item"
+                  onClick={() => handleItemClick("/settings")}
+                >
                   {t("settings")}
                 </a>
                 <button onClick={handleLogout} className="dropdown-item">
