@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 
-// NPM Pack Import
+// React Icon Import
 import { AiOutlineStar } from "react-icons/ai";
-import { RiShoppingCart2Line } from "react-icons/ri";
 
+// Carousel Import
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 
@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 // Component Import
 import Card from "../components/Card/Card";
 import Jumbutron from "../components/Jumbutron";
+import AddToCart from "../components/Buttons/AddToCart";
 
 // Layout Import
 import HomeLayout from "../layouts/HomeLayout";
@@ -24,15 +25,16 @@ import { GlobalContext } from "../context/GlobalState";
 import { useHistory } from "react-router-dom";
 
 function Home(props) {
+  const [isAdded, setisAdded] = useState(false);
+
   let history = useHistory();
 
   // i18next Multi Language Support
   const { t, i18n } = useTranslation();
 
   const {
-    cart,
-    removeFromCart,
-    addToCart,
+    movieCart,
+    addToMovieCart,
     trendingMovies,
     trendingTVShows,
     fetchTrendingMovies,
@@ -40,14 +42,23 @@ function Home(props) {
     fetchTrendingPerson,
   } = useContext(GlobalContext);
 
+  const checkMovieCart = (id) => {
+    movieCart.includes();
+  };
+
   const handleItemClick = (path) => {
     history.push(path);
+  };
+
+  const handleAddToCart = (item) => {
+    addToMovieCart(item);
   };
 
   useEffect(() => {
     fetchTrendingMovies();
     fetchTrendingTVShows();
     fetchTrendingPerson();
+    checkMovieCart();
   }, []);
 
   return (
@@ -89,14 +100,12 @@ function Home(props) {
                   <AiOutlineStar /> IMDB {item.vote_average}
                 </button>
                 <h3>{item.overview}</h3>
-                <button
-                  onClick={() => addToCart(item.id)}
-                  type="button"
-                  className="btn btn-success btn-lg ml-2 mt-4"
-                >
-                  <RiShoppingCart2Line size={28} /> {t("addtocart")} (
-                  {(item.popularity / 20).toFixed(2)} $)
-                </button>
+                <AddToCart
+                  id={item.id}
+                  item={item}
+                  popularity={item.popularity}
+                  handleAddToCart={handleAddToCart}
+                />
               </div>
             ))}
         </Carousel>

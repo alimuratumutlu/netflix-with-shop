@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Form Tools Import
 import { Formik } from "formik";
@@ -14,7 +14,7 @@ import AuthLayout from "../../layouts/AuthLayout";
 
 export default function Login() {
   // i18next Multi Language Support
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleLogin = () => {
     authService.login();

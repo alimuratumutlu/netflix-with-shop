@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 
-// NPM Pack Import
-import { MdLocalMovies } from "react-icons/md";
+// React Icon Import
 import { AiOutlineStar } from "react-icons/ai";
-import { RiShoppingCart2Line } from "react-icons/ri";
 
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
@@ -16,6 +14,7 @@ import { useHistory } from "react-router-dom";
 // Component Import
 import Card from "../components/Card/Card";
 import Jumbutron from "../components/Jumbutron";
+import AddToCart from "../components/Buttons/AddToCart";
 
 // Layout Import
 import DetailLayout from "../layouts/DetailLayout";
@@ -24,7 +23,7 @@ import DetailLayout from "../layouts/DetailLayout";
 import { GlobalContext } from "../context/GlobalState";
 
 function Movie({ match, location }) {
-  const [id, setId] = useState(match.params.id);
+  const [isAdded, setisAdded] = useState(false);
 
   let history = useHistory();
 
@@ -32,14 +31,23 @@ function Movie({ match, location }) {
   const { t, i18n } = useTranslation();
 
   const {
-    addToCart,
-    currentMovie,
-    currentGenres,
-    getCurrentGenres,
+    movieCart,
+    addToMovieCart,
     getCurrentMovie,
-    similarMovies,
+    currentMovie,
+    getCurrentGenres,
+    currentGenres,
     getSimilarMovies,
+    similarMovies,
   } = useContext(GlobalContext);
+
+  const checkMovieCart = (id) => {
+    movieCart.includes();
+  };
+
+  const handleAddToCart = (item) => {
+    addToMovieCart(item);
+  };
 
   const handleItemClick = (path) => {
     history.push(path);
@@ -49,6 +57,7 @@ function Movie({ match, location }) {
     getCurrentMovie(match.params.id);
     getCurrentGenres(match.params.id);
     getSimilarMovies(match.params.id);
+    checkMovieCart();
   }, [match.params.id]);
 
   return (
@@ -91,14 +100,13 @@ function Movie({ match, location }) {
                   </button>
                 ))}
               <h3>{currentMovie.overview}</h3>
-              <button
-                onClick={() => addToCart(currentMovie.id)}
-                type="button"
-                className="btn btn-success btn-lg mt-4"
-              >
-                <RiShoppingCart2Line size={28} /> {t("addtocart")} (
-                {(currentMovie.popularity / 20).toFixed(2)} $)
-              </button>
+              <AddToCart
+                key={currentMovie.id}
+                id={currentMovie.id}
+                item={currentMovie}
+                popularity={currentMovie.popularity}
+                handleAddToCart={handleAddToCart}
+              />
             </div>
           </div>
         )}

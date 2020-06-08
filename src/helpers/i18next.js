@@ -27,6 +27,7 @@ const resources = {
       addtocart: "Add to cart",
       trending: "Trending",
       similar: "Similar",
+      mycart: "My Cart",
     },
   },
   tr: {
@@ -52,6 +53,7 @@ const resources = {
       addtocart: "Sepetime ekle",
       trending: "Popüler",
       similar: "Benzer",
+      mycart: "Sepetim",
     },
   },
 };

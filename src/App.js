@@ -1,7 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
-
-// Component Import
-import Navbar from "./components/Navbar/Navbar";
+import React, { Suspense } from "react";
 
 // NPM Packages
 import { BrowserRouter as Router, Switch } from "react-router-dom";

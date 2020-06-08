@@ -15,7 +15,8 @@ const initialState = {
   currentGenres: [{}],
   currentMovie: {},
   currentTVShow: {},
-  cart: [],
+  movieCart: [],
+  tvshowCart: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -29,7 +30,6 @@ export const GlobalProvider = ({ children }) => {
         `${ApiUrl.BASE + ApiUrl.TRENDING}/person/week?api_key=${Config.API_KEY}`
       )
       .then((res) => {
-        console.log("dispatch", res.data.results);
         dispatch({
           type: "FETCH_TRENDING_PERSON",
           payload: res.data.results,
@@ -43,7 +43,6 @@ export const GlobalProvider = ({ children }) => {
         `${ApiUrl.BASE + ApiUrl.TRENDING}/movie/week?api_key=${Config.API_KEY}`
       )
       .then((res) => {
-        console.log("dispatch", res.data.results);
         dispatch({
           type: "FETCH_TRENDING_MOVIES",
           payload: res.data.results,
@@ -55,7 +54,6 @@ export const GlobalProvider = ({ children }) => {
     const res = await axios
       .get(`${ApiUrl.BASE + ApiUrl.TRENDING}/tv/week?api_key=${Config.API_KEY}`)
       .then((res) => {
-        console.log("dispatch", res.data.results);
         dispatch({
           type: "FETCH_TRENDING_TVSHOWS",
           payload: res.data.results,
@@ -67,7 +65,6 @@ export const GlobalProvider = ({ children }) => {
     const res = await axios
       .get(`${ApiUrl.BASE}/movie/${id}/similar?api_key=${Config.API_KEY}`)
       .then((res) => {
-        console.log("dispatch", res.data.results);
         dispatch({
           type: "GET_SIMILAR_MOVIES",
           payload: res.data.results,
@@ -79,7 +76,6 @@ export const GlobalProvider = ({ children }) => {
     const res = await axios
       .get(`${ApiUrl.BASE}/tv/${id}/similar?api_key=${Config.API_KEY}`)
       .then((res) => {
-        console.log("dispatch", res.data.results);
         dispatch({
           type: "GET_SIMILAR_TVSHOWS",
           payload: res.data.results,
@@ -120,17 +116,32 @@ export const GlobalProvider = ({ children }) => {
       });
   };
 
-  function addToCart(id) {
-    console.log(state.cart);
+  function addToMovieCart(item) {
+    console.log(item);
     dispatch({
-      type: "ADD_TO_CART",
+      type: "ADD_TO_MOVIE_CART",
+      payload: item,
+    });
+  }
+
+  function addToTVShowCart(item) {
+    console.log(item);
+    dispatch({
+      type: "ADD_TO_TVSHOW_CART",
+      payload: item,
+    });
+  }
+
+  function removeFromMovieCart(id) {
+    dispatch({
+      type: "REMOVE_FROM_MOVIE_CART",
       payload: id,
     });
   }
 
-  function removeFromCart(id) {
+  function removeFromTVShowCart(id) {
     dispatch({
-      type: "REMOVE_FROM_CART",
+      type: "REMOVE_FROM_TV_SHOW_CART",
       payload: id,
     });
   }
@@ -138,7 +149,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        cart: state.cart,
+        tvshowCart: state.tvshowCart,
+        movieCart: state.movieCart,
         trendingMovies: state.trendingMovies,
         trendingTVShows: state.trendingTVShows,
         trendingPerson: state.trendingPerson,
@@ -155,8 +167,10 @@ export const GlobalProvider = ({ children }) => {
         fetchTrendingMovies,
         fetchTrendingTVShows,
         fetchTrendingPerson,
-        removeFromCart,
-        addToCart,
+        removeFromTVShowCart,
+        removeFromMovieCart,
+        addToMovieCart,
+        addToTVShowCart,
       }}
     >
       {children}

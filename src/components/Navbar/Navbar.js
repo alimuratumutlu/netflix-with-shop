@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import { RiShoppingCart2Line } from "react-icons/ri";
@@ -25,7 +25,7 @@ function Navbar(props) {
   const { t, i18n } = useTranslation();
 
   // Fetch From Context
-  const { cart } = useContext(GlobalContext);
+  const { tvshowCart, movieCart } = useContext(GlobalContext);
 
   const handleItemClick = (path) => {
     history.push(path);
@@ -103,7 +103,9 @@ function Navbar(props) {
               onClick={() => handleItemClick("/cart")}
             >
               <RiShoppingCart2Line size={28} />
-              <span class="badge badge-danger badge-pill">{cart.length}</span>
+              <span className="badge badge-danger badge-pill">
+                {tvshowCart.length + movieCart.length}
+              </span>
             </a>
           </li>
 

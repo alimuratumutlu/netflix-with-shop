@@ -40,15 +40,27 @@ export default (state, action) => {
         ...state,
         trendingAll: action.payload,
       };
-    case "REMOVE_FROM_CART":
+    case "ADD_TO_MOVIE_CART":
       return {
         ...state,
-        cart: state.cart.filter((cart) => cart.id !== action.payload),
+        movieCart: [...state.movieCart, action.payload],
       };
-    case "ADD_TO_CART":
+    case "ADD_TO_TVSHOW_CART":
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        tvshowCart: [...state.tvshowCart, action.payload],
+      };
+    case "REMOVE_FROM_MOVIE_CART":
+      return {
+        ...state,
+        movieCart: state.movieCart.filter((item) => item.id !== action.payload),
+      };
+    case "REMOVE_FROM_TV_SHOW_CART":
+      return {
+        ...state,
+        tvshowCart: state.tvshowCart.filter(
+          (item) => item.id !== action.payload
+        ),
       };
     default:
       return state;

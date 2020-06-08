@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Settings() {
   // i18next Multi Language Support
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <SettingsLayout>

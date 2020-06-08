@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 
-// NPM Pack Import
-import { MdLocalMovies } from "react-icons/md";
+// React Icon Import
 import { AiOutlineStar } from "react-icons/ai";
-import { RiShoppingCart2Line } from "react-icons/ri";
 
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
@@ -11,11 +9,14 @@ import "@brainhubeu/react-carousel/lib/style.css";
 // i18next Multi Language Support
 import "../helpers/i18next";
 import { useTranslation } from "react-i18next";
+
+// Router Import
 import { useHistory } from "react-router-dom";
 
 // Component Import
 import Card from "../components/Card/Card";
 import Jumbutron from "../components/Jumbutron";
+import AddToCart from "../components/Buttons/AddToCart";
 
 // Layout Import
 import DetailLayout from "../layouts/DetailLayout";
@@ -24,7 +25,7 @@ import DetailLayout from "../layouts/DetailLayout";
 import { GlobalContext } from "../context/GlobalState";
 
 function TVShow({ match, location }) {
-  const [id, setId] = useState(match.params.id);
+  const [isAdded, setisAdded] = useState(false);
 
   let history = useHistory();
 
@@ -32,24 +33,33 @@ function TVShow({ match, location }) {
   const { t, i18n } = useTranslation();
 
   const {
-    addToCart,
-    currentTVShow,
-    currentGenres,
-    getCurrentGenres,
+    tvshowCart,
+    addToTVShowCart,
     getCurrentTVShow,
-    similarTVShows,
+    currentTVShow,
+    getCurrentGenres,
+    currentGenres,
     getSimilarTVShows,
+    similarTVShows,
   } = useContext(GlobalContext);
+
+  const checkTVShowCart = (id) => {
+    tvshowCart.includes();
+  };
+
+  const handleAddToCart = (item) => {
+    addToTVShowCart(item);
+  };
 
   const handleItemClick = (path) => {
     history.push(path);
-    setId(match.params.id);
   };
 
   useEffect(() => {
     getCurrentTVShow(match.params.id);
     getCurrentGenres(match.params.id);
     getSimilarTVShows(match.params.id);
+    checkTVShowCart();
   }, [match.params.id]);
 
   return (
@@ -92,14 +102,13 @@ function TVShow({ match, location }) {
                   </button>
                 ))}
               <h3>{currentTVShow.overview}</h3>
-              <button
-                onClick={() => addToCart(currentTVShow.id)}
-                type="button"
-                className="btn btn-success btn-lg mt-4"
-              >
-                <RiShoppingCart2Line size={28} /> {t("addtocart")} (
-                {(currentTVShow.popularity / 20).toFixed(2)} $)
-              </button>
+              <AddToCart
+                key={currentTVShow.id}
+                id={currentTVShow.id}
+                item={currentTVShow}
+                popularity={currentTVShow.popularity}
+                handleAddToCart={handleAddToCart}
+              />
             </div>
           </div>
         )}
