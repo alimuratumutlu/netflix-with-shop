@@ -2,7 +2,7 @@
 
 * Reactjs
 * React Hooks
-* Global State Management with React Hooks
+* Global State Management with React Hooks & Context
 * React Router
 * Formik For Login
 * Email & Pass Validation with Yup
