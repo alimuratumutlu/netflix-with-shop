@@ -55,6 +55,8 @@ export default function Cart() {
               <p className="card-text">{item.overview}</p>
               <RiDeleteBin5Line
                 size={24}
+                role="button"
+                onClick={() => removeFromMovieCart(item.id)}
                 style={{ position: "absolute", right: 15, top: 15 }}
               />
             </div>
@@ -78,6 +80,8 @@ export default function Cart() {
               <p className="card-text">{item.overview}</p>
               <RiDeleteBin5Line
                 size={24}
+                role="button"
+                onClick={() => removeFromTVShowCart(item.id)}
                 style={{ position: "absolute", right: 15, top: 15 }}
               />
             </div>
