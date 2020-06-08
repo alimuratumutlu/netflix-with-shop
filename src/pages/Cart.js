@@ -3,9 +3,6 @@ import React, { useEffect, useContext } from "react";
 // NPM Pack Import
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-import Carousel from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
-
 // i18next Multi Language Support
 import "../helpers/i18next";
 import { useTranslation } from "react-i18next";
