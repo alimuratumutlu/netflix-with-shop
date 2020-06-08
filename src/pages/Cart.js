@@ -76,6 +76,10 @@ export default function Cart() {
               />
               <h5 className="card-title">{item.original_name}</h5>
               <p className="card-text">{item.overview}</p>
+              <RiDeleteBin5Line
+                size={24}
+                style={{ position: "absolute", right: 15, top: 15 }}
+              />
             </div>
           </div>
         ))}
