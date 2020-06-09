@@ -22,6 +22,26 @@ function getTVShowCartFromStorage() {
   return tvShowCart;
 }
 
+function deleteMovieFromStorage(deletemovieid) {
+  let movieCart = getMovieCartFromStorage();
+  movieCart.forEach(function (movie, index) {
+    if (movie.id === deletemovieid) {
+      movieCart.splice(index, 1);
+    }
+  });
+  localStorage.setItem("movieCart", JSON.stringify(movieCart));
+}
+
+function deleteTVShowFromStorage(deletetvshowid) {
+  let tvshowCart = getTVShowCartFromStorage();
+  tvshowCart.forEach(function (tvshow, index) {
+    if (tvshow.id === deletetvshowid) {
+      tvshowCart.splice(index, 1);
+    }
+  });
+  localStorage.setItem("tvshowCart", JSON.stringify(tvshowCart));
+}
+
 const initialState = {
   trendingPerson: [{}],
   trendingMovies: [{}],
@@ -153,6 +173,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function removeFromMovieCart(id) {
+    deleteMovieFromStorage(id);
     dispatch({
       type: "REMOVE_FROM_MOVIE_CART",
       payload: id,
@@ -160,6 +181,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function removeFromTVShowCart(id) {
+    deleteTVShowFromStorage(id);
     dispatch({
       type: "REMOVE_FROM_TV_SHOW_CART",
       payload: id,
@@ -191,6 +213,8 @@ export const GlobalProvider = ({ children }) => {
         removeFromMovieCart,
         addToMovieCart,
         addToTVShowCart,
+        deleteMovieFromStorage,
+        deleteTVShowFromStorage,
       }}
     >
       {children}
