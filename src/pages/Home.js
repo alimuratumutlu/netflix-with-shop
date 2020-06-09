@@ -13,8 +13,7 @@ import { useTranslation } from "react-i18next";
 
 // Component Import
 import Card from "../components/Card/Card";
-import Jumbutron from "../components/Jumbutron";
-import AddToCart from "../components/Buttons/AddToCart";
+import Slider from "../components/Slider/Slider";
 
 // Layout Import
 import HomeLayout from "../layouts/HomeLayout";
@@ -22,6 +21,7 @@ import HomeLayout from "../layouts/HomeLayout";
 // Context
 import { GlobalContext } from "../context/GlobalState";
 
+// Router Import
 import { useHistory } from "react-router-dom";
 
 function Home(props) {
@@ -46,12 +46,12 @@ function Home(props) {
     movieCart.includes();
   };
 
-  const handleItemClick = (path) => {
-    history.push(path);
-  };
-
   const handleAddToCart = (item) => {
     addToMovieCart(item);
+  };
+
+  const handleItemClick = (path) => {
+    history.push(path);
   };
 
   useEffect(() => {
@@ -63,57 +63,15 @@ function Home(props) {
 
   return (
     <HomeLayout>
-      <Jumbutron>
-        <Carousel
-          autoPlay={5000}
-          animationSpeed={2000}
-          keepDirectionWhenDragging
-        >
-          {trendingMovies &&
-            trendingMovies.map((item) => (
-              <div
-                key={item.id}
-                className="text-white"
-                style={{ width: "80vw" }}
-              >
-                <img
-                  style={{
-                    float: "left",
-                    maxWidth: "20vw",
-                    marginRight: 40,
-                    borderRadius: 15,
-                  }}
-                  src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                />
-                <h1
-                  style={{
-                    fontSize: "4em",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {item.title}
-                </h1>
-                <button
-                  type="button"
-                  className="btn btn-outline-warning btn-lg my-3"
-                >
-                  <AiOutlineStar /> IMDB {item.vote_average}
-                </button>
-                <h3>{item.overview}</h3>
-                <AddToCart
-                  id={item.id}
-                  item={item}
-                  popularity={item.popularity}
-                  handleAddToCart={handleAddToCart}
-                />
-              </div>
-            ))}
-        </Carousel>
-      </Jumbutron>
+      <Slider
+        trendingMovies={trendingMovies}
+        handleItemClick={handleItemClick}
+        handleAddToCart={handleAddToCart}
+      />
       <h4 className="text-white pl-2 pt-4">
         {t("trending")} {t("movies")}
       </h4>
-      <Carousel slidesPerPage={9} infinite keepDirectionWhenDragging>
+      <Carousel slidesPerPage={9} keepDirectionWhenDragging>
         {trendingMovies &&
           trendingMovies.map((item) => (
             <Card

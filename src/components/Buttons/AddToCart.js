@@ -20,7 +20,7 @@ export default function AddToCart({
     <button
       onClick={() => handleAddToCart(item)}
       type="button"
-      className={`btn btn-success btn-lg ml-2 mt-4 ${
+      className={`btn btn-success btn-lg mt-4 ${
         isDisabled ? "disabled" : null
       }`}
     >

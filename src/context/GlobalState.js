@@ -6,6 +6,22 @@ import axios from "axios";
 import ApiUrl from "../constants/ApiUrl";
 import Config from "../constants/Config";
 
+function getMovieCartFromStorage() {
+  let movieCart;
+  localStorage.getItem("movieCart") === null
+    ? (movieCart = [])
+    : (movieCart = JSON.parse(localStorage.getItem("movieCart")));
+  return movieCart;
+}
+
+function getTVShowCartFromStorage() {
+  let tvShowCart;
+  localStorage.getItem("tvShowCart") === null
+    ? (tvShowCart = [])
+    : (tvShowCart = JSON.parse(localStorage.getItem("tvShowCart")));
+  return tvShowCart;
+}
+
 const initialState = {
   trendingPerson: [{}],
   trendingMovies: [{}],
@@ -15,8 +31,8 @@ const initialState = {
   currentGenres: [{}],
   currentMovie: {},
   currentTVShow: {},
-  movieCart: [],
-  tvshowCart: [],
+  movieCart: getMovieCartFromStorage(),
+  tvshowCart: getTVShowCartFromStorage(),
 };
 
 export const GlobalContext = createContext(initialState);
@@ -117,7 +133,9 @@ export const GlobalProvider = ({ children }) => {
   };
 
   function addToMovieCart(item) {
-    console.log(item);
+    let movieCart = getMovieCartFromStorage();
+    movieCart.push(item);
+    localStorage.setItem("movieCart", JSON.stringify(movieCart));
     dispatch({
       type: "ADD_TO_MOVIE_CART",
       payload: item,
@@ -125,7 +143,9 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function addToTVShowCart(item) {
-    console.log(item);
+    let tvShowCart = getTVShowCartFromStorage();
+    tvShowCart.push(item);
+    localStorage.setItem("tvShowCart", JSON.stringify(tvShowCart));
     dispatch({
       type: "ADD_TO_TVSHOW_CART",
       payload: item,

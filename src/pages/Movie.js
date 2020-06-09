@@ -85,16 +85,17 @@ function Movie({ match, location }) {
               </h3>
               <button
                 type="button"
-                className="btn btn-outline-warning btn-lg my-3"
+                className="btn btn-outline-warning btn-sm my-3"
               >
                 <AiOutlineStar /> IMDB {currentMovie.vote_average}
               </button>
               {currentGenres &&
                 currentGenres.map((genre) => (
                   <button
+                    id={genre.id}
                     key={genre.id}
                     type="button"
-                    className="btn btn-outline-secondary btn-lg ml-3 my-3"
+                    className="btn btn-outline-primary btn-sm ml-3 my-3"
                   >
                     {genre.name}
                   </button>

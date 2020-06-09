@@ -1,1 +1,2 @@
-export { default } from "./AddToCart";
+export { AddToCart } from "./AddToCart";
+export { MoreInfo } from "./MoreInfo";
