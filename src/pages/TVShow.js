@@ -106,6 +106,8 @@ function TVShow({ match, location }) {
                 key={currentTVShow.id}
                 id={currentTVShow.id}
                 item={currentTVShow}
+                type="tvshow"
+                name={currentTVShow.original_name}
                 popularity={currentTVShow.popularity}
                 handleAddToCart={handleAddToCart}
               />

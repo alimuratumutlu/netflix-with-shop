@@ -105,6 +105,8 @@ function Movie({ match, location }) {
                 key={currentMovie.id}
                 id={currentMovie.id}
                 item={currentMovie}
+                type="movie"
+                name={currentMovie.original_title}
                 popularity={currentMovie.popularity}
                 handleAddToCart={handleAddToCart}
               />

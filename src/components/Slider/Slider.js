@@ -61,7 +61,7 @@ export default function Slider({
                   fontWeight: "bold",
                 }}
               >
-                {item.title}
+                {item.original_title}
               </h1>
               <button
                 type="button"
@@ -78,6 +78,8 @@ export default function Slider({
               />
               <AddToCart
                 id={item.id}
+                type="movie"
+                name={item.original_title}
                 item={item}
                 popularity={item.popularity}
                 handleAddToCart={handleAddToCart}

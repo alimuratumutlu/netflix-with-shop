@@ -9,7 +9,7 @@ import Config from "../constants/Config";
 function getMovieCartFromStorage() {
   let movieCart;
   localStorage.getItem("movieCart") === null
-    ? (movieCart = [])
+    ? (movieCart = [{}])
     : (movieCart = JSON.parse(localStorage.getItem("movieCart")));
   return movieCart;
 }
@@ -17,7 +17,7 @@ function getMovieCartFromStorage() {
 function getTVShowCartFromStorage() {
   let tvShowCart;
   localStorage.getItem("tvShowCart") === null
-    ? (tvShowCart = [])
+    ? (tvShowCart = [{}])
     : (tvShowCart = JSON.parse(localStorage.getItem("tvShowCart")));
   return tvShowCart;
 }
@@ -215,6 +215,8 @@ export const GlobalProvider = ({ children }) => {
         addToTVShowCart,
         deleteMovieFromStorage,
         deleteTVShowFromStorage,
+        getMovieCartFromStorage,
+        getTVShowCartFromStorage,
       }}
     >
       {children}
