@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { RiShoppingCart2Line } from "react-icons/ri";
@@ -25,7 +25,12 @@ function Navbar(props) {
   const { t, i18n } = useTranslation();
 
   // Fetch From Context
-  const { tvshowCart, movieCart } = useContext(GlobalContext);
+  const {
+    tvshowCart,
+    movieCart,
+    getMovieCartFromStorage,
+    getTVShowCartFromStorage,
+  } = useContext(GlobalContext);
 
   const handleItemClick = (path) => {
     history.push(path);
@@ -51,6 +56,10 @@ function Navbar(props) {
     },
   ];
 
+  useEffect(() => {
+    getMovieCartFromStorage();
+    getTVShowCartFromStorage();
+  }, []);
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark bg-black fixed-top"

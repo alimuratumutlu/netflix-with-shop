@@ -17,19 +17,17 @@ import CategoryLayout from "../layouts/CategoryLayout";
 import { GlobalContext } from "../context/GlobalState";
 
 export default function Cart() {
-  let history = useHistory();
-
-  // i18next Multi Language Support
-  const { t } = useTranslation();
-
   const {
-    tvshowCart,
     movieCart,
+    tvshowCart,
     removeFromTVShowCart,
     removeFromMovieCart,
   } = useContext(GlobalContext);
 
-  useEffect(() => console.log("cart", tvshowCart, movieCart), []);
+  let history = useHistory();
+
+  // i18next Multi Language Support
+  const { t } = useTranslation();
 
   return (
     <CategoryLayout>

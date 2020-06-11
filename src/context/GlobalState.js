@@ -191,8 +191,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        tvshowCart: state.tvshowCart,
         movieCart: state.movieCart,
+        tvshowCart: state.tvshowCart,
         trendingMovies: state.trendingMovies,
         trendingTVShows: state.trendingTVShows,
         trendingPerson: state.trendingPerson,
