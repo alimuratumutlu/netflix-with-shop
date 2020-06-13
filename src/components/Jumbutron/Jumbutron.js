@@ -7,7 +7,7 @@ export default function Jumbutron(props) {
     <div
       id="jumbutron"
       className="jumbotron bg-dark text-light"
-      style={{ height: "80vh", overflowY: "scroll" }}
+      style={{ height: "80vh", overflowY: "hidden" }}
     >
       <div style={{ marginTop: "15vh" }}>{props.children}</div>
     </div>
