@@ -1,5 +1,8 @@
 import React, { useEffect, useContext } from "react";
 
+//Component Import
+import CartItem from "../components/CartItem";
+
 // NPM Pack Import
 import { RiDeleteBin5Line } from "react-icons/ri";
 
@@ -33,55 +36,27 @@ export default function Cart() {
     <CategoryLayout>
       <h1>{t("mycart")}</h1>
       <h4>{t("movies")}</h4>
-      {movieCart &&
-        movieCart.map((item) => (
-          <div key={item.id} className="card bg-dark mb-4">
-            <div className="card-body">
-              <img
-                style={{
-                  float: "left",
-                  maxWidth: "10vw",
-                  marginRight: 20,
-                  borderRadius: 5,
-                }}
-                src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
-              />
-              <h5 className="card-title">{item.title}</h5>
-              <p className="card-text">{item.overview}</p>
-              <RiDeleteBin5Line
-                size={24}
-                role="button"
-                onClick={() => removeFromMovieCart(item.id)}
-                style={{ position: "absolute", right: 15, top: 15 }}
-              />
-            </div>
-          </div>
-        ))}
+      {movieCart?.map((item) => (
+        <CartItem
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          backdrop_path={item.backdrop_path}
+          overview={item.overview}
+          removeFromCart={removeFromMovieCart}
+        />
+      ))}
       <h4>{t("tvshows")}</h4>
-      {tvshowCart &&
-        tvshowCart.map((item) => (
-          <div key={item.id} className="card bg-dark mb-4">
-            <div className="card-body">
-              <img
-                style={{
-                  float: "left",
-                  maxWidth: "10vw",
-                  marginRight: 20,
-                  borderRadius: 5,
-                }}
-                src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
-              />
-              <h5 className="card-title">{item.original_name}</h5>
-              <p className="card-text">{item.overview}</p>
-              <RiDeleteBin5Line
-                size={24}
-                role="button"
-                onClick={() => removeFromTVShowCart(item.id)}
-                style={{ position: "absolute", right: 15, top: 15 }}
-              />
-            </div>
-          </div>
-        ))}
+      {tvshowCart?.map((item) => (
+        <CartItem
+          key={item.id}
+          id={item.id}
+          title={item.original_name}
+          backdrop_path={item.backdrop_path}
+          overview={item.overview}
+          removeFromCart={removeFromTVShowCart}
+        />
+      ))}
     </CategoryLayout>
   );
 }

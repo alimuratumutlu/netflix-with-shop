@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState } from "react";
 
 // React Icon Import
 import { RiShoppingCart2Line } from "react-icons/ri";
@@ -6,9 +6,6 @@ import { RiShoppingCart2Line } from "react-icons/ri";
 // i18next Multi Language Support
 import "../../helpers/i18next";
 import { useTranslation } from "react-i18next";
-
-// Context
-import { GlobalContext } from "../../context/GlobalState";
 
 export default function AddToCart({
   item,
@@ -22,7 +19,7 @@ export default function AddToCart({
   const { t } = useTranslation();
 
   const clickAddToCart = (type, item, name) => {
-    if (type == "movie") {
+    if (type === "movie" && localStorage.getItem("movieCart") != null) {
       const found = JSON.parse(localStorage.getItem("movieCart")).some(
         (item) => item.original_title === name
       );
@@ -31,7 +28,10 @@ export default function AddToCart({
       } else {
         setIsDisabled(true);
       }
-    } else if (type == "tvshow") {
+    } else if (
+      type === "tvshow" &&
+      localStorage.getItem("tvShowCart") !== null
+    ) {
       const found = JSON.parse(localStorage.getItem("tvShowCart")).some(
         (item) => item.original_name === name
       );
@@ -40,6 +40,10 @@ export default function AddToCart({
       } else {
         setIsDisabled(true);
       }
+    } else if (localStorage.getItem("movieCart") == null) {
+      handleAddToCart(item);
+    } else if (localStorage.getItem("tvShowCart") == null) {
+      handleAddToCart(item);
     }
   };
 

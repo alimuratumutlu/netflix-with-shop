@@ -1,0 +1,12 @@
+.cart-item {
+  float: left;
+  max-width: 10vw;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.delete-bin {
+  position: absolute;
+  right: 15;
+  top: 15;
+}
