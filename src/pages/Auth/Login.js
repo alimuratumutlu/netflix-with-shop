@@ -24,8 +24,8 @@ export default function Login() {
     <AuthLayout>
       <Formik
         initialValues={{
-          email: "",
-          password: "",
+          email: "no.need.to.enter@email.com",
+          password: "111111",
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email().required("Required"),
