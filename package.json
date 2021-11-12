@@ -4,10 +4,10 @@
   "private": false,
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.19.26",
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
+    "axios": "^0.24.0",
     "bootstrap": "^4.5.3",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
@@ -24,7 +24,7 @@
     "react-responsive-carousel": "^3.2.11",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "react-swipe": "^6.0.4",
     "swipe-js-iso": "^2.1.5",
     "yup": "^0.29.3"
