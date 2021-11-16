@@ -3,12 +3,9 @@ import React, { useEffect, useContext } from "react";
 //Component Import
 import CartItem from "../components/CartItem";
 
-// NPM Pack Import
-import { RiDeleteBin5Line } from "react-icons/ri";
-
 // i18next Multi Language Support
-import "../helpers/i18next";
 import { useTranslation } from "react-i18next";
+import "../helpers/i18next";
 
 // Router Import
 import { useHistory } from "react-router-dom";
@@ -36,7 +33,7 @@ export default function Cart() {
     <CategoryLayout>
       <h1>{t("mycart")}</h1>
       <h4>{t("movies")}</h4>
-      {movieCart?.map((item) => (
+      {movieCart.map((item) => (
         <CartItem
           key={item.id}
           id={item.id}
@@ -47,7 +44,7 @@ export default function Cart() {
         />
       ))}
       <h4>{t("tvshows")}</h4>
-      {tvshowCart?.map((item) => (
+      {tvshowCart.map((item) => (
         <CartItem
           key={item.id}
           id={item.id}

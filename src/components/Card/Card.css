@@ -1,11 +1,11 @@
 .item-card {
   min-height: 15vh;
   margin: 10px;
-  max-width: 10vw;
+  /* max-width: 10vw; */
 }
 
 .item-poster {
-  max-width: 10vw;
+  /* max-width: 10vw; */
   border-radius: 9px;
 }
 

@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
+import { isMobile } from 'react-device-detect';
 
-// React Icon Import
-import { AiOutlineStar } from "react-icons/ai";
 
 // Carousel Import
-import Carousel from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 // i18next Multi Language Support
 import "../helpers/i18next";
@@ -71,7 +70,7 @@ function Home(props) {
       <h4 className="text-white pl-2 pt-4">
         {t("trending")} {t("movies")}
       </h4>
-      <Carousel slidesPerPage={9} keepDirectionWhenDragging>
+      <Carousel autoPlay={false} centerMode={true} centerSlidePercentage={isMobile ? 30 : 10} emulateTouch={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false} swipeable={true} useKeyboardArrows={true} preventMovementUntilSwipeScrollTolerance={true} selectedItem={5}>
         {trendingMovies &&
           trendingMovies.map((item) => (
             <Card
@@ -87,7 +86,7 @@ function Home(props) {
       <h4 className="text-white pl-2 pt-4">
         {t("trending")} {t("tvshows")}
       </h4>
-      <Carousel slidesPerPage={9} infinite keepDirectionWhenDragging>
+      <Carousel autoPlay={false} centerMode={true} centerSlidePercentage={isMobile ? 30 : 10} emulateTouch={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false} swipeable={true} useKeyboardArrows={true} preventMovementUntilSwipeScrollTolerance={true} selectedItem={5}>
         {trendingTVShows &&
           trendingTVShows.map((item) => (
             <Card

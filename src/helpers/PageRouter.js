@@ -20,9 +20,9 @@ import TVShowsList from "../pages/TVShowsList";
 import Settings from "../pages/Profile/Settings";
 import MyProfile from "../pages/Profile/MyProfile";
 
-const PagesRouter = () => {
+const PageRouter = () => {
   return (
-    <>
+    <React.Fragment>
       <Route exact path="/" render={() => <Login />} />
       <Route exact path="/login" render={() => <Login />} />
       <PrivateRoute exact path="/home" component={Home} />
@@ -34,8 +34,8 @@ const PagesRouter = () => {
       <PrivateRoute exact path="/settings" component={Settings} />
       <PrivateRoute exact path="/my-profile" component={MyProfile} />
       <PrivateRoute exact path="/tv-shows" component={TVShowsList} />
-    </>
+    </React.Fragment>
   );
 };
 
-export default PagesRouter;
+export default PageRouter;
