@@ -67,7 +67,7 @@ export const GlobalProvider = ({ children }) => {
       )
       .then((res) => {
         dispatch({
-          type: "FETCH_TRENDING_PERSON",
+          type: "FETCH_TRENDING_ARTIST",
           payload: res.data.results,
         });
       });

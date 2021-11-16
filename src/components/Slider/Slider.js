@@ -53,7 +53,7 @@ export default function Slider({
                   marginRight: 40,
                   borderRadius: 15,
                 }}
-                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
               />
               <h1
                 style={{

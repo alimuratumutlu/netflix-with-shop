@@ -75,7 +75,7 @@ function TVShow({ match, location }) {
                   marginRight: 40,
                   borderRadius: 15,
                 }}
-                src={`https://image.tmdb.org/t/p/original/${currentTVShow.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${currentTVShow.poster_path}`}
               />
               <h3
                 style={{

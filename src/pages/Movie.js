@@ -73,7 +73,7 @@ function Movie({ match, location }) {
                   marginRight: 40,
                   borderRadius: 15,
                 }}
-                src={`https://image.tmdb.org/t/p/original/${currentMovie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${currentMovie.poster_path}`}
               />
               <h3
                 style={{

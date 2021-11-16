@@ -13,7 +13,7 @@ export default function Card({ id, title, type, posterpath, handleItemClick }) {
       <img
         className="item-poster"
         alt={title}
-        src={`https://image.tmdb.org/t/p/original/${posterpath}`}
+        src={`https://image.tmdb.org/t/p/w500/${posterpath}`}
       />
     </div>
   );

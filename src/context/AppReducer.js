@@ -35,7 +35,7 @@ export default (state, action) => {
         ...state,
         trendingTVShows: action.payload,
       };
-    case "FETCH_TRENDING_PERSON":
+    case "FETCH_TRENDING_ARTIST":
       return {
         ...state,
         trendingAll: action.payload,

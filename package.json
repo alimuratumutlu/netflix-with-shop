@@ -25,8 +25,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "react-swipe": "^6.0.4",
-    "swipe-js-iso": "^2.1.5",
     "yup": "^0.29.3"
   },
   "scripts": {
