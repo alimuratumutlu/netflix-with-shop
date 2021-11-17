@@ -16,9 +16,6 @@ import Jumbutron from "../Jumbutron";
 import AddToCart from "../Buttons/AddToCart";
 import MoreInfo from "../Buttons/MoreInfo";
 
-// Router Import
-import { useHistory } from "react-router-dom";
-
 import "./Slider.css";
 
 export default function Slider({
@@ -26,7 +23,6 @@ export default function Slider({
   handleAddToCart,
   handleItemClick,
 }) {
-  let history = useHistory();
 
   // i18next Multi Language Support
   const { t, i18n } = useTranslation();

@@ -21,12 +21,12 @@ import HomeLayout from "../layouts/HomeLayout";
 import { GlobalContext } from "../context/GlobalState";
 
 // Router Import
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home(props) {
   const [isAdded, setisAdded] = useState(false);
 
-  let history = useHistory();
+  let navigate = useNavigate();
 
   // i18next Multi Language Support
   const { t, i18n } = useTranslation();
@@ -50,7 +50,7 @@ function Home(props) {
   };
 
   const handleItemClick = (path) => {
-    history.push(path);
+    navigate(path);
   };
 
   useEffect(() => {

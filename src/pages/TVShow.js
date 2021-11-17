@@ -1,17 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
 
+import { isMobile } from 'react-device-detect';
+
 // React Icon Import
 import { AiOutlineStar } from "react-icons/ai";
 
-import Carousel from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
+// Carousel Import
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 // i18next Multi Language Support
 import "../helpers/i18next";
 import { useTranslation } from "react-i18next";
 
 // Router Import
-import { useHistory } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Component Import
 import Card from "../components/Card/Card";
@@ -27,7 +30,8 @@ import { GlobalContext } from "../context/GlobalState";
 function TVShow({ match, location }) {
   const [isAdded, setisAdded] = useState(false);
 
-  let history = useHistory();
+  let navigate = useNavigate();
+  let params = useParams();
 
   // i18next Multi Language Support
   const { t, i18n } = useTranslation();
@@ -52,15 +56,15 @@ function TVShow({ match, location }) {
   };
 
   const handleItemClick = (path) => {
-    history.push(path);
+    navigate(path);
   };
 
   useEffect(() => {
-    getCurrentTVShow(match.params.id);
-    getCurrentGenres(match.params.id);
-    getSimilarTVShows(match.params.id);
+    getCurrentTVShow(params.id);
+    getCurrentGenres(params.id);
+    getSimilarTVShows(params.id);
     checkTVShowCart();
-  }, [match.params.id]);
+  }, [params.id]);
 
   return (
     <DetailLayout>
@@ -118,7 +122,7 @@ function TVShow({ match, location }) {
       <h4 className="text-white pl-2 pt-4">
         {t("similar")} {t("tvshows")}
       </h4>
-      <Carousel slidesPerPage={9} infinite keepDirectionWhenDragging>
+      <Carousel autoPlay={false} centerMode={true} centerSlidePercentage={isMobile ? 30 : 10} emulateTouch={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false} swipeable={true} useKeyboardArrows={true} preventMovementUntilSwipeScrollTolerance={true} selectedItem={5}>
         {similarTVShows &&
           similarTVShows.map((item) => (
             <Card

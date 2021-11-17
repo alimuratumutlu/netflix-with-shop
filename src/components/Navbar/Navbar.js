@@ -16,10 +16,10 @@ import authService from "../../services/auth.service";
 // Context
 import { GlobalContext } from "../../context/GlobalState";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar(props) {
-  let history = useHistory();
+  let navigate = useNavigate();
 
   // i18next Multi Language Support
   const { t, i18n } = useTranslation();
@@ -33,7 +33,7 @@ function Navbar(props) {
   } = useContext(GlobalContext);
 
   const handleItemClick = (path) => {
-    history.push(path);
+    navigate(path);
   };
 
   const handleLogout = () => {

@@ -7,9 +7,6 @@ import CartItem from "../components/CartItem";
 import { useTranslation } from "react-i18next";
 import "../helpers/i18next";
 
-// Router Import
-import { useHistory } from "react-router-dom";
-
 // Layout Import
 import CategoryLayout from "../layouts/CategoryLayout";
 
@@ -23,8 +20,6 @@ export default function Cart() {
     removeFromTVShowCart,
     removeFromMovieCart,
   } = useContext(GlobalContext);
-
-  let history = useHistory();
 
   // i18next Multi Language Support
   const { t } = useTranslation();
