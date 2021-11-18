@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 import axios from "axios";
@@ -138,7 +138,7 @@ export const GlobalProvider = ({ children }) => {
           type: "GET_CURRENT_TVSHOW",
           payload: res.data,
         });
-      });
+      })
   };
 
   const getCurrentGenres = async (id) => {

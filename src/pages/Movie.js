@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 
 import { isMobile } from 'react-device-detect';
 
@@ -6,8 +6,8 @@ import { isMobile } from 'react-device-detect';
 import { AiOutlineStar } from "react-icons/ai";
 
 // Carousel Import
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import Carousel, { slidesToShowPlugin } from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 
 // i18next Multi Language Support
 import "../helpers/i18next";
@@ -26,13 +26,12 @@ import DetailLayout from "../layouts/DetailLayout";
 import { GlobalContext } from "../context/GlobalState";
 
 function Movie({ match, location }) {
-  const [isAdded, setisAdded] = useState(false);
 
   let navigate = useNavigate();
   let params = useParams();
 
   // i18next Multi Language Support
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const {
     movieCart,
@@ -93,17 +92,16 @@ function Movie({ match, location }) {
               >
                 <AiOutlineStar /> IMDB {currentMovie.vote_average}
               </button>
-              {currentGenres &&
-                currentGenres.map((genre) => (
-                  <button
-                    id={genre.id}
-                    key={genre.id}
-                    type="button"
-                    className="btn btn-outline-primary btn-sm ml-3 my-3"
-                  >
-                    {genre.name}
-                  </button>
-                ))}
+              {currentGenres?.map((genre) => (
+                <button
+                  id={genre.id}
+                  key={genre.id}
+                  type="button"
+                  className="btn btn-outline-primary btn-sm ml-3 my-3"
+                >
+                  {genre.name}
+                </button>
+              ))}
               <h3>{currentMovie.overview}</h3>
               <AddToCart
                 key={currentMovie.id}
@@ -121,18 +119,55 @@ function Movie({ match, location }) {
       <h4 className="text-white pl-2 pt-4">
         {t("similar")} {t("movies")}
       </h4>
-      <Carousel autoPlay={false} centerMode={true} centerSlidePercentage={isMobile ? 30 : 10} emulateTouch={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false} swipeable={true} useKeyboardArrows={true} preventMovementUntilSwipeScrollTolerance={true} selectedItem={5}>
-        {similarMovies &&
-          similarMovies.map((item) => (
-            <Card
-              id={item.id}
-              title={item.title}
-              type="movie"
-              posterpath={item.poster_path}
-              popularity={item.popularity}
-              handleItemClick={handleItemClick}
-            />
-          ))}
+      <Carousel
+        draggable={true}
+        offset={5}
+        animationSpeed={30}
+        plugins={[
+          'infinite',
+          {
+            resolve: slidesToShowPlugin,
+            options: {
+              numberOfSlides: 9,
+            },
+          },
+        ]}
+        breakpoints={{
+          640: {
+            plugins: [
+              'infinite',
+              {
+                resolve: slidesToShowPlugin,
+                options: {
+                  numberOfSlides: 3
+                }
+              },
+            ]
+          },
+          900: {
+            plugins: [
+              'infinite',
+              {
+                resolve: slidesToShowPlugin,
+                options: {
+                  numberOfSlides: 7
+                }
+              },
+            ]
+          }
+        }}
+      >
+        {similarMovies?.map((item) => (
+          <Card
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            type="movie"
+            posterpath={item.poster_path}
+            popularity={item.popularity}
+            handleItemClick={handleItemClick}
+          />
+        ))}
       </Carousel>
     </DetailLayout>
   );

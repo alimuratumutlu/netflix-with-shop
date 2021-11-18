@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 //Component Import
 import CartItem from "../components/CartItem";

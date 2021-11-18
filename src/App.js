@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 
 // NPM Packages
-import { BrowserRouter as Router, Route, Routes, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { GlobalProvider } from "./context/GlobalState";
 

@@ -1,12 +1,25 @@
 .item-card {
   min-height: 15vh;
   margin: 10px;
-  /* max-width: 10vw; */
+  max-width: 10vw;
 }
 
 .item-poster {
-  /* max-width: 10vw; */
+  max-width: 10vw;
   border-radius: 9px;
+}
+
+@media only screen and (max-width: 600px) {
+  .item-card {
+    min-height: 15vh;
+    margin: 10px;
+    max-width: 32vw;
+  }
+
+  .item-poster {
+    max-width: 32vw;
+    border-radius: 9px;
+  }
 }
 
 .item-price {
